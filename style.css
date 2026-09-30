@@ -16,22 +16,63 @@ body {
     color: #68444c;
 }
 
+
+/* =========================
+   COMMON SCREEN
+========================= */
+
 .scene {
     position: relative;
-
     width: 100%;
     height: 100vh;
-
     overflow: hidden;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
-/* -------------------------
-   แมว
-------------------------- */
+.screen {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    padding: 25px;
+
+    background: #fff3f6;
+
+    opacity: 0;
+    visibility: hidden;
+
+    pointer-events: none;
+
+    transform: scale(.96);
+
+    transition:
+        opacity .5s ease,
+        transform .5s ease;
+
+    z-index: 10;
+}
+
+.screen.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: scale(1);
+}
+
+
+/* =========================
+   SCENE 1
+========================= */
 
 .cat {
     position: absolute;
@@ -43,40 +84,36 @@ body {
 
     transform:
         translateX(-50%)
-        scale(0.2);
+        scale(.2);
 
     animation:
         catComeCloser 6s
-        cubic-bezier(0.2, 0.8, 0.2, 1)
+        cubic-bezier(.2,.8,.2,1)
         forwards;
 }
-
-/* แมวเดิน/พุ่งเข้าหาหน้าจอ */
 
 @keyframes catComeCloser {
 
     0% {
         transform:
             translateX(-50%)
-            scale(0.2);
+            scale(.2);
 
-        opacity: 0.4;
+        opacity: .4;
     }
 
     25% {
         transform:
             translateX(-50%)
-            scale(0.5);
+            scale(.5);
 
-        opacity: 0.8;
+        opacity: .8;
     }
 
     50% {
         transform:
             translateX(-50%)
             scale(1);
-
-        opacity: 1;
     }
 
     70% {
@@ -115,18 +152,15 @@ body {
     }
 }
 
-/* -------------------------
-   กล่องคำพูด
-------------------------- */
 
 .speech {
-
     position: absolute;
 
     left: 50%;
     bottom: 10%;
 
-    transform: translateX(-50%);
+    transform:
+        translateX(-50%);
 
     width: 85%;
     max-width: 360px;
@@ -143,12 +177,14 @@ body {
     line-height: 1.6;
 
     box-shadow:
-        0 10px 30px rgba(0, 0, 0, 0.08);
+        0 10px 30px
+        rgba(0,0,0,.08);
 
     opacity: 0;
 
     animation:
-        speechAppear 1s
+        speechAppear
+        1s
         ease
         4.5s
         forwards;
@@ -176,900 +212,25 @@ body {
             translateY(0);
     }
 }
-/* =================================
-   SCENE 2 : จดหมาย
-================================= */
-
-.letter-scene-content {
-
-    position: absolute;
-
-    inset: 0;
-
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-
-    flex-direction: column;
-
-    background: #fff3f6;
-
-    opacity: 0;
-
-    pointer-events: none;
-
-    transform: scale(0.9);
-
-    transition:
-        opacity 1s ease,
-        transform 1s ease;
-}
 
 
-/* เมื่อ Scene 2 เริ่ม */
-
-body.letter-scene .letter-scene-content {
-
-    opacity: 1;
-
-    pointer-events: auto;
-
-    transform: scale(1);
-}
-
-
-/* ซ่อนแมว Scene 1 */
-
-body.letter-scene .cat,
-body.letter-scene .speech {
-
-    opacity: 0;
-
-    transition: opacity 0.8s ease;
-}
-
-
-/* -------------------------
-   อุ้งเท้า
-------------------------- */
+/* =========================
+   SCENE 2
+========================= */
 
 .paw {
-
-    font-size: 100px;
-
-    position: absolute;
-
-    top: -100px;
-
-    right: 20px;
-
-    transform: rotate(-25deg);
-
-    animation: pawComeIn 1.5s ease forwards;
-}
-
-
-@keyframes pawComeIn {
-
-    0% {
-
-        top: -100px;
-
-        transform:
-            rotate(-25deg)
-            translateX(80px);
-
-    }
-
-    100% {
-
-        top: 18%;
-
-        transform:
-            rotate(-15deg)
-            translateX(0);
-
-    }
-}
-
-
-/* -------------------------
-   จดหมาย
-------------------------- */
-
-.letter {
-
-    width: 82%;
-
-    max-width: 340px;
-
-    padding: 30px 22px;
-
-    background: #fffdf8;
-
-    border-radius: 20px;
-
-    text-align: center;
-
-    box-shadow:
-        0 15px 45px
-        rgba(0, 0, 0, 0.12);
-
-    transform:
-        translateY(40px)
-        rotate(-2deg);
-
-    opacity: 0;
-
-    animation:
-        letterAppear 1s
-        ease
-        0.7s
-        forwards;
-}
-
-
-@keyframes letterAppear {
-
-    to {
-
-        transform:
-            translateY(0)
-            rotate(-2deg);
-
-        opacity: 1;
-
-    }
-
-}
-
-
-/* ไอคอนจดหมาย */
-
-.letter-icon {
-
-    font-size: 65px;
+    font-size: 70px;
 
     margin-bottom: 10px;
-}
-
-
-/* ข้อความ */
-
-.letter p {
-
-    font-size: 21px;
-
-    line-height: 1.6;
-
-    color: #704650;
-
-    margin: 10px 0 22px;
-
-}
-
-
-/* -------------------------
-   ปุ่ม
-------------------------- */
-
-#openLetter {
-
-    border: none;
-
-    padding: 14px 28px;
-
-    border-radius: 999px;
-
-    background: #ff8fab;
-
-    color: white;
-
-    font-size: 17px;
-
-    font-weight: bold;
-
-    box-shadow:
-        0 6px 15px
-        rgba(255, 143, 171, 0.3);
-
-    cursor: pointer;
-
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
-}
-
-
-#openLetter:active {
-
-    transform: scale(0.92);
-
-    box-shadow: none;
-
-}
-/* =================================
-   GENERAL SCREEN
-================================= */
-
-.screen {
-    position: absolute;
-    inset: 0;
-
-    display: flex;
-    flex-direction: column;
-
-    justify-content: center;
-    align-items: center;
-
-    text-align: center;
-
-    padding: 25px;
-
-    background: #fff3f6;
-
-    opacity: 0;
-
-    visibility: hidden;
-
-    pointer-events: none;
-
-    transition:
-        opacity 0.8s ease,
-        transform 0.8s ease;
-
-    transform: scale(0.96);
-
-    z-index: 10;
-}
-
-
-.screen h2 {
-    color: #704650;
-
-    font-size: 28px;
-
-    margin: 10px 0;
-}
-
-
-.screen p {
-    color: #8a6068;
-
-    font-size: 17px;
-
-    line-height: 1.7;
-}
-
-
-/* =================================
-   SCENE 2
-================================= */
-
-body.letter-scene .letter-scene-content {
-    opacity: 1;
-
-    pointer-events: auto;
-
-    transform: scale(1);
-}
-
-
-/* =================================
-   SCENE 3 : MUSIC
-================================= */
-
-body.music-scene #musicScene {
-    opacity: 1;
-
-    visibility: visible;
-
-    pointer-events: auto;
-
-    transform: scale(1);
-}
-
-
-.big-envelope {
-    font-size: 100px;
 
     animation:
-        envelopeFloat 2s
+        pawBounce
+        1.5s
         ease-in-out
         infinite;
 }
 
-
-@keyframes envelopeFloat {
-
-    0%,
-    100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-12px);
-    }
-}
-
-
-.paper {
-    width: 88%;
-
-    max-width: 380px;
-
-    padding: 25px 20px;
-
-    background: #fffdf8;
-
-    border-radius: 25px;
-
-    box-shadow:
-        0 15px 40px
-        rgba(0, 0, 0, 0.1);
-}
-
-
-.love-text {
-    font-size: 20px !important;
-
-    color: #704650 !important;
-
-    font-weight: bold;
-}
-
-
-.music-box {
-    margin-top: 20px;
-
-    padding: 18px;
-
-    background: #fff3f6;
-
-    border-radius: 20px;
-}
-
-
-.music-icon {
-    font-size: 35px;
-}
-
-
-.music-button,
-.next-button,
-.yes-button,
-.no-button {
-    border: none;
-
-    border-radius: 999px;
-
-    padding: 13px 22px;
-
-    font-size: 16px;
-
-    font-weight: bold;
-
-    cursor: pointer;
-
-    margin: 6px;
-}
-
-
-.music-button {
-    display: inline-block;
-
-    text-decoration: none;
-
-    background: #ff8fab;
-
-    color: white;
-}
-
-
-.next-button {
-    background: #ff8fab;
-
-    color: white;
-}
-
-
-.next-button:active,
-.music-button:active,
-.yes-button:active {
-    transform: scale(0.94);
-}
-
-
-.hidden {
-    display: none;
-}
-
-
-/* =================================
-   SCENE 4
-================================= */
-
-body.ready-scene #readyScene {
-    opacity: 1;
-
-    visibility: visible;
-
-    pointer-events: auto;
-
-    transform: scale(1);
-}
-
-
-.ready-cat {
-    font-size: 100px;
-
-    animation:
-        catBounce 1.2s
-        ease-in-out
-        infinite;
-}
-
-
-@keyframes catBounce {
-
-    0%,
-    100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-12px);
-    }
-}
-
-
-.ready-buttons {
-    margin-top: 20px;
-
-    display: flex;
-
-    gap: 15px;
-
-    justify-content: center;
-}
-
-
-.yes-button {
-    background: #ff8fab;
-
-    color: white;
-
-    box-shadow:
-        0 8px 20px
-        rgba(255, 143, 171, 0.25);
-}
-
-
-.no-button {
-    background: #eee;
-
-    color: #777;
-
-    transition:
-        left 0.2s ease,
-        top 0.2s ease;
-}
-
-
-/* =================================
-   SCENE 5 : MESSAGE
-================================= */
-
-body.message-scene #messageScene {
-    opacity: 1;
-
-    visibility: visible;
-
-    pointer-events: auto;
-
-    transform: scale(1);
-}
-
-
-.envelope {
-    position: relative;
-
-    width: 300px;
-
-    height: 210px;
-
-    background: #f5d9df;
-
-    border-radius: 10px;
-
-    box-shadow:
-        0 15px 40px
-        rgba(0, 0, 0, 0.12);
-}
-
-
-.envelope-flap {
-    position: absolute;
-
-    top: 0;
-
-    left: 0;
-
-    width: 100%;
-
-    height: 110px;
-
-    background: #eebbc5;
-
-    clip-path:
-        polygon(
-            0 0,
-            100% 0,
-            50% 100%
-        );
-
-    transform-origin: top;
-
-    transition:
-        transform 0.8s ease;
-
-    z-index: 3;
-
-    font-size: 45px;
-
-    padding-top: 25px;
-}
-
-
-.envelope.open .envelope-flap {
-    transform: rotateX(180deg);
-}
-
-
-.paper-message {
-    position: absolute;
-
-    left: 15px;
-
-    right: 15px;
-
-    top: 25px;
-
-    min-height: 170px;
-
-    background: #fffdf8;
-
-    border-radius: 8px;
-
-    padding: 30px 18px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    z-index: 2;
-
-    transform: translateY(50px);
-
-    opacity: 0;
-
-    transition:
-        transform 1s ease 0.4s,
-        opacity 0.8s ease 0.4s;
-}
-
-
-.envelope.open .paper-message {
-    transform: translateY(-100px);
-
-    opacity: 1;
-}
-
-
-.paper-message p {
-    font-size: 17px;
-
-    line-height: 1.7;
-
-    color: #704650;
-}
-
-
-.envelope.open + .next-button {
-    display: block;
-
-    margin-top: 120px;
-}
-
-
-/* =================================
-   SCENE 6 : GAME
-================================= */
-
-body.game-scene #gameScene {
-    opacity: 1;
-
-    visibility: visible;
-
-    pointer-events: auto;
-
-    transform: scale(1);
-}
-
-
-.game-info {
-    font-size: 20px;
-
-    font-weight: bold;
-
-    margin: 10px;
-}
-
-
-.timer {
-    margin-left: 20px;
-
-    color: #9d6570;
-}
-
-
-.game-area {
-    position: relative;
-
-    width: 92%;
-
-    max-width: 380px;
-
-    height: 55vh;
-
-    min-height: 300px;
-
-    margin-top: 10px;
-
-    border-radius: 25px;
-
-    background: #fffdfd;
-
-    box-shadow:
-        inset 0 0 0 3px #ffe0e7;
-
-    overflow: hidden;
-}
-
-
-.game-heart {
-    position: absolute;
-
-    width: 55px;
-
-    height: 55px;
-
-    border: none;
-
-    background: transparent;
-
-    font-size: 35px;
-
-    cursor: pointer;
-
-    animation:
-        heartPop 0.5s
-        ease;
-
-    padding: 0;
-}
-
-
-@keyframes heartPop {
-
-    0% {
-        transform: scale(0);
-    }
-
-    80% {
-        transform: scale(1.15);
-    }
-
-    100% {
-        transform: scale(1);
-    }
-}
-
-
-.game-message {
-    min-height: 30px;
-
-    font-weight: bold;
-}
-
-
-/* =================================
-   SCENE 7 : GIFT
-================================= */
-
-body.gift-scene #giftScene {
-    opacity: 1;
-
-    visibility: visible;
-
-    pointer-events: auto;
-
-    transform: scale(1);
-}
-
-
-.gift-box {
-    font-size: 130px;
-
-    cursor: pointer;
-
-    transition:
-        transform 0.5s ease;
-}
-
-
-.gift-box.gift-open {
-    transform:
-        scale(1.3)
-        rotate(8deg);
-}
-
-
-/* =================================
-   SCENE 8 : ROSES
-================================= */
-
-body.rose-scene #roseScene {
-    opacity: 1;
-
-    visibility: visible;
-
-    pointer-events: auto;
-
-    transform: scale(1);
-}
-
-
-.roses {
-    font-size: 65px;
-
-    line-height: 1.4;
-
-    animation:
-        rosesAppear 1s
-        ease;
-}
-
-
-@keyframes rosesAppear {
-
-    0% {
-        transform:
-            scale(0.2)
-            rotate(-10deg);
-
-        opacity: 0;
-    }
-
-    70% {
-        transform:
-            scale(1.15)
-            rotate(5deg);
-
-        opacity: 1;
-    }
-
-    100% {
-        transform:
-            scale(1)
-            rotate(0);
-    }
-}
-
-
-.rose-text {
-    font-size: 23px !important;
-
-    font-weight: bold;
-}
-
-
-/* =================================
-   SCENE 9 : FINAL
-================================= */
-
-body.final-scene #finalScene {
-    opacity: 1;
-
-    visibility: visible;
-
-    pointer-events: auto;
-
-    transform: scale(1);
-}
-
-
-.final-card {
-    width: 88%;
-
-    max-width: 380px;
-
-    padding: 35px 25px;
-
-    background: white;
-
-    border-radius: 30px;
-
-    box-shadow:
-        0 15px 50px
-        rgba(0, 0, 0, 0.1);
-
-    animation:
-        finalAppear 1s
-        ease;
-}
-
-
-@keyframes finalAppear {
-
-    0% {
-        transform:
-            translateY(30px)
-            scale(0.9);
-
-        opacity: 0;
-    }
-
-    100% {
-        transform:
-            translateY(0)
-            scale(1);
-
-        opacity: 1;
-    }
-}
-
-
-.final-cat {
-    font-size: 75px;
-
-    margin-bottom: 10px;
-}
-
-
-.final-card h2 {
-    color: #704650;
-
-    font-size: 25px;
-}
-
-
-.final-card p {
-    font-size: 18px;
-
-    line-height: 1.8;
-
-    color: #805861;
-}
-
-
-.final-hearts {
-    margin-top: 20px;
-
-    font-size: 28px;
-
-    animation:
-        heartFloat 2s
-        ease-in-out
-        infinite;
-}
-
-
-@keyframes heartFloat {
+@keyframes pawBounce {
 
     0%,
     100% {
@@ -1080,369 +241,138 @@ body.final-scene #finalScene {
         transform: translateY(-8px);
     }
 }
-/* =================================
-   ALL SCENES
-================================= */
 
-.screen {
-    position: absolute;
-    inset: 0;
-
-    display: flex;
-    flex-direction: column;
-
-    justify-content: center;
-    align-items: center;
-
-    text-align: center;
-
-    padding: 25px;
-
-    background: #fff3f6;
-
-    opacity: 0;
-
-    visibility: hidden;
-
-    pointer-events: none;
-
-    transform: scale(0.96);
-
-    transition:
-        opacity 0.7s ease,
-        transform 0.7s ease;
-
-    z-index: 20;
-}
-
-
-/* =================================
-   SCENE 2
-================================= */
-
-.letter-scene-content {
-    position: absolute;
-
-    inset: 0;
-
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-
-    flex-direction: column;
-
-    background: #fff3f6;
-
-    opacity: 0;
-
-    visibility: hidden;
-
-    pointer-events: none;
-
-    transform: scale(0.9);
-
-    transition:
-        opacity 0.8s ease,
-        transform 0.8s ease;
-
-    z-index: 10;
-}
-
-
-body.letter-scene .letter-scene-content {
-    opacity: 1;
-
-    visibility: visible;
-
-    pointer-events: auto;
-
-    transform: scale(1);
-}
-
-
-body.letter-scene .cat,
-body.letter-scene .speech {
-    opacity: 0;
-
-    pointer-events: none;
-}
-
-
-/* =================================
-   PAW
-================================= */
-
-.paw {
-    position: absolute;
-
-    top: 10%;
-
-    right: 20px;
-
-    font-size: 90px;
-
-    transform: rotate(-15deg);
-
-    animation:
-        pawMove 1.5s ease;
-}
-
-
-@keyframes pawMove {
-
-    0% {
-        transform:
-            translateX(100px)
-            rotate(-25deg);
-    }
-
-    100% {
-        transform:
-            translateX(0)
-            rotate(-15deg);
-    }
-}
-
-
-/* =================================
-   LETTER
-================================= */
 
 .letter {
-    width: 82%;
+    width: min(330px, 90vw);
 
-    max-width: 340px;
-
-    padding: 30px 22px;
+    padding: 30px 25px;
 
     background: #fffdf8;
 
     border-radius: 20px;
 
-    text-align: center;
-
     box-shadow:
-        0 15px 45px
-        rgba(0, 0, 0, 0.12);
-
-    animation:
-        letterAppear 0.8s ease;
+        0 15px 40px
+        rgba(0,0,0,.1);
 }
-
-
-@keyframes letterAppear {
-
-    from {
-        opacity: 0;
-
-        transform:
-            translateY(30px)
-            rotate(-3deg);
-    }
-
-    to {
-        opacity: 1;
-
-        transform:
-            translateY(0)
-            rotate(-2deg);
-    }
-}
-
 
 .letter-icon {
-    font-size: 65px;
+    font-size: 55px;
 }
-
 
 .letter p {
-    font-size: 21px;
-
-    line-height: 1.6;
-
-    color: #704650;
-
-    margin: 10px 0 22px;
+    font-size: 20px;
+    line-height: 1.7;
 }
 
 
-#openLetter {
+button {
+    font-family: inherit;
     border: none;
+    cursor: pointer;
+}
 
-    padding: 14px 28px;
+.letter button,
+.next-button,
+.yes-button,
+.no-button {
 
-    border-radius: 999px;
+    padding: 14px 25px;
 
-    background: #ff8fab;
-
-    color: white;
+    border-radius: 30px;
 
     font-size: 17px;
 
-    font-weight: bold;
+    background: #e99aaa;
+
+    color: white;
+
+    box-shadow:
+        0 8px 20px
+        rgba(180,90,110,.2);
+
+    transition:
+        transform .2s ease;
+}
+
+.letter button:active,
+.next-button:active,
+.yes-button:active,
+.no-button:active {
+    transform: scale(.95);
 }
 
 
-/* =================================
+/* =========================
    SCENE 3
-================================= */
+========================= */
 
-body.music-scene #musicScene {
-    opacity: 1;
+.music-card {
 
-    visibility: visible;
+    width: min(350px, 92vw);
 
-    pointer-events: auto;
+    padding: 30px 25px;
 
-    transform: scale(1);
-}
-
-
-.big-envelope {
-    font-size: 90px;
-
-    margin-bottom: 10px;
-
-    animation:
-        float 2s ease-in-out infinite;
-}
-
-
-@keyframes float {
-
-    0%,
-    100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-10px);
-    }
-}
-
-
-.paper {
-    width: 88%;
-
-    max-width: 380px;
-
-    padding: 25px 20px;
-
-    background: #fffdf8;
+    background: white;
 
     border-radius: 25px;
 
     box-shadow:
-        0 15px 40px
-        rgba(0, 0, 0, 0.1);
+        0 15px 45px
+        rgba(0,0,0,.1);
 }
-
-
-.love-text {
-    font-size: 20px !important;
-
-    font-weight: bold;
-
-    color: #704650 !important;
-}
-
-
-.music-box {
-    margin-top: 20px;
-
-    padding: 18px;
-
-    background: #fff3f6;
-
-    border-radius: 20px;
-}
-
 
 .music-icon {
-    font-size: 35px;
+    font-size: 65px;
 }
 
+.love-text {
+    font-size: 19px;
+    line-height: 1.7;
+}
 
 .music-button {
-    display: inline-block;
 
-    padding: 13px 20px;
+    display: block;
 
-    border-radius: 999px;
+    margin: 20px auto;
 
-    background: #ff8fab;
+    width: fit-content;
+
+    padding: 14px 22px;
+
+    border-radius: 30px;
+
+    background: #e99aaa;
 
     color: white;
 
     text-decoration: none;
 
-    font-weight: bold;
+    font-size: 16px;
 }
-
 
 .next-button {
-    border: none;
-
-    padding: 13px 22px;
-
-    border-radius: 999px;
-
-    background: #ff8fab;
-
-    color: white;
-
-    font-size: 16px;
-
-    font-weight: bold;
-
-    margin: 8px;
+    margin-top: 10px;
 }
-
 
 .hidden {
     display: none !important;
 }
 
 
-/* =================================
+/* =========================
    SCENE 4
-================================= */
-
-body.ready-scene #readyScene {
-    opacity: 1;
-
-    visibility: visible;
-
-    pointer-events: auto;
-
-    transform: scale(1);
-}
-
+========================= */
 
 .ready-cat {
-    font-size: 100px;
-
-    animation:
-        bounce 1.2s infinite;
+    font-size: 80px;
+    margin-bottom: 10px;
 }
-
-
-@keyframes bounce {
-
-    0%,
-    100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-12px);
-    }
-}
-
 
 .ready-buttons {
+
     display: flex;
 
     gap: 15px;
@@ -1450,358 +380,31 @@ body.ready-scene #readyScene {
     margin-top: 20px;
 }
 
-
-.yes-button,
 .no-button {
-    border: none;
-
-    padding: 13px 22px;
-
-    border-radius: 999px;
-
-    font-size: 16px;
-
-    font-weight: bold;
+    background: #d8aab4;
 }
 
 
-.yes-button {
-    background: #ff8fab;
-
-    color: white;
-}
-
-
-.no-button {
-    background: #eeeeee;
-
-    color: #777;
-}
-
-
-/* =================================
+/* =========================
    SCENE 5
-================================= */
-
-body.message-scene #messageScene {
-    opacity: 1;
-
-    visibility: visible;
-
-    pointer-events: auto;
-
-    transform: scale(1);
-}
-
-
-.envelope {
-    position: relative;
-
-    width: 300px;
-
-    height: 200px;
-
-    background: #f5d9df;
-
-    border-radius: 10px;
-
-    box-shadow:
-        0 15px 40px
-        rgba(0, 0, 0, 0.12);
-}
-
-
-.envelope-flap {
-    position: absolute;
-
-    top: 0;
-
-    left: 0;
-
-    width: 100%;
-
-    height: 110px;
-
-    background: #eebbc5;
-
-    clip-path:
-        polygon(
-            0 0,
-            100% 0,
-            50% 100%
-        );
-
-    transform-origin: top center;
-
-    transition:
-        transform 0.8s ease;
-
-    z-index: 3;
-
-    font-size: 40px;
-
-    padding-top: 20px;
-}
-
-
-.envelope.open .envelope-flap {
-    transform: rotateX(180deg);
-}
-
-
-.paper-message {
-    position: absolute;
-
-    left: 15px;
-
-    right: 15px;
-
-    top: 20px;
-
-    min-height: 165px;
-
-    background: #fffdf8;
-
-    border-radius: 8px;
-
-    padding: 25px 15px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    z-index: 2;
-
-    transform: translateY(60px);
-
-    opacity: 0;
-
-    transition:
-        transform 0.8s ease 0.3s,
-        opacity 0.5s ease 0.3s;
-}
-
-
-.envelope.open .paper-message {
-    transform: translateY(-100px);
-
-    opacity: 1;
-}
-
-
-.paper-message p {
-    color: #704650;
-
-    font-size: 17px;
-
-    line-height: 1.7;
-}
-
-
-/* =================================
-   SCENE 6
-================================= */
-
-body.game-scene #gameScene {
-    opacity: 1;
-
-    visibility: visible;
-
-    pointer-events: auto;
-
-    transform: scale(1);
-}
-
-
-.game-info {
-    font-size: 20px;
-
-    font-weight: bold;
-
-    margin: 10px;
-}
-
-
-.timer {
-    margin-left: 20px;
-}
-
-
-.game-area {
-    position: relative;
-
-    width: 92%;
-
-    max-width: 380px;
-
-    height: 55vh;
-
-    min-height: 300px;
-
-    background: white;
-
-    border: 3px solid #ffe0e7;
-
-    border-radius: 25px;
-
-    overflow: hidden;
-}
-
-
-.game-heart {
-    position: absolute;
-
-    width: 55px;
-
-    height: 55px;
-
-    padding: 0;
-
-    border: none;
-
-    background: transparent;
-
-    font-size: 35px;
-}
-
-
-.game-message {
-    min-height: 30px;
-
-    font-weight: bold;
-}
-
-
-/* =================================
-   SCENE 7
-================================= */
-
-body.gift-scene #giftScene {
-    opacity: 1;
-
-    visibility: visible;
-
-    pointer-events: auto;
-
-    transform: scale(1);
-}
-
-
-.gift-box {
-    font-size: 130px;
-
-    transition:
-        transform 0.5s ease;
-}
-
-
-.gift-box.gift-open {
-    transform:
-        scale(1.25)
-        rotate(8deg);
-}
-
-
-/* =================================
-   SCENE 8
-================================= */
-
-body.rose-scene #roseScene {
-    opacity: 1;
-
-    visibility: visible;
-
-    pointer-events: auto;
-
-    transform: scale(1);
-}
-
-
-.roses {
-    font-size: 60px;
-
-    line-height: 1.4;
-}
-
-
-.rose-text {
-    font-size: 23px !important;
-
-    font-weight: bold;
-}
-
-
-/* =================================
-   SCENE 9
-================================= */
-
-body.final-scene #finalScene {
-    opacity: 1;
-
-    visibility: visible;
-
-    pointer-events: auto;
-
-    transform: scale(1);
-}
-
-
-.final-card {
-    width: 88%;
-
-    max-width: 380px;
-
-    padding: 35px 25px;
-
-    background: white;
-
-    border-radius: 30px;
-
-    box-shadow:
-        0 15px 50px
-        rgba(0, 0, 0, 0.1);
-}
-
-
-.final-cat {
-    font-size: 75px;
-}
-
-
-.final-card h2 {
-    color: #704650;
-}
-
-
-.final-card p {
-    color: #805861;
-
-    font-size: 18px;
-
-    line-height: 1.8;
-}
-
-
-.final-hearts {
-    font-size: 28px;
-
-    margin-top: 20px;
-}
-/* =================================
-   REAL ENVELOPE SCENE
-================================= */
+   ENVELOPE
+========================= */
 
 .envelope-title {
+
     font-size: 28px;
+
     color: #704650;
+
     font-weight: bold;
+
     margin-bottom: 25px;
 }
 
 .envelope-title span {
+
     font-size: 18px;
+
     font-weight: normal;
 }
 
@@ -1809,6 +412,7 @@ body.final-scene #finalScene {
 /* ซอง */
 
 .envelope {
+
     position: relative;
 
     width: 300px;
@@ -1824,7 +428,7 @@ body.final-scene #finalScene {
 
     box-shadow:
         0 18px 45px
-        rgba(0, 0, 0, 0.15);
+        rgba(0,0,0,.15);
 
     cursor: pointer;
 
@@ -1832,9 +436,10 @@ body.final-scene #finalScene {
 }
 
 
-/* ฝากระดาษด้านบน */
+/* ฝากระดาษ */
 
 .envelope-flap {
+
     position: absolute;
 
     top: 0;
@@ -1855,34 +460,37 @@ body.final-scene #finalScene {
     transform-origin: top center;
 
     transition:
-        transform 0.8s ease;
+        transform .8s ease;
 
     z-index: 4;
 }
 
 
-/* หัวใจบนซอง */
+/* หัวใจ */
 
 .envelope-heart {
+
     position: absolute;
 
     left: 50%;
     top: 75px;
 
-    transform: translateX(-50%);
+    transform:
+        translateX(-50%);
 
     font-size: 45px;
 
     z-index: 5;
 
     transition:
-        opacity 0.4s ease;
+        opacity .4s ease;
 }
 
 
 /* กระดาษ */
 
 .paper-message {
+
     position: absolute;
 
     left: 15px;
@@ -1910,14 +518,14 @@ body.final-scene #finalScene {
         translateY(30px);
 
     transition:
-        transform 0.8s ease 0.3s,
-        opacity 0.5s ease 0.3s;
+        transform .8s ease .3s,
+        opacity .5s ease .3s;
 
     z-index: 2;
 }
 
-
 .paper-message p {
+
     margin: 0;
 
     color: #704650;
@@ -1928,20 +536,21 @@ body.final-scene #finalScene {
 }
 
 
-/* ตอนเปิดซอง */
+/* เปิดซอง */
 
 .envelope.open .envelope-flap {
+
     transform:
         rotateX(180deg);
 }
 
-
 .envelope.open .envelope-heart {
+
     opacity: 0;
 }
 
-
 .envelope.open .paper-message {
+
     opacity: 1;
 
     transform:
@@ -1950,16 +559,180 @@ body.final-scene #finalScene {
 
 
 .envelope-hint {
+
     margin-top: 25px;
 
-    font-size: 15px !important;
+    font-size: 15px;
 
-    color: #9d727b !important;
+    color: #9d727b;
 }
 
 
-/* ปุ่มเกมหลังเปิด */
-
 #messageScene .next-button {
+
     margin-top: 100px;
+}
+
+
+/* =========================
+   SCENE 6 GAME
+========================= */
+
+.game-info {
+
+    font-size: 20px;
+
+    margin: 10px 0;
+}
+
+.timer {
+    margin-left: 20px;
+}
+
+.game-area {
+
+    position: relative;
+
+    width: min(350px, 90vw);
+
+    height: 400px;
+
+    max-height: 55vh;
+
+    background: white;
+
+    border-radius: 20px;
+
+    box-shadow:
+        inset 0 0 20px
+        rgba(0,0,0,.05);
+
+    overflow: hidden;
+}
+
+.game-heart {
+
+    position: absolute;
+
+    background: none;
+
+    padding: 0;
+
+    font-size: 35px;
+
+    animation:
+        heartPop .3s ease;
+}
+
+@keyframes heartPop {
+
+    from {
+        transform: scale(0);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}
+
+.game-message {
+
+    min-height: 30px;
+
+    font-size: 18px;
+}
+
+
+/* =========================
+   SCENE 7
+========================= */
+
+.gift-box {
+
+    font-size: 100px;
+
+    margin: 20px;
+
+    transition:
+        transform .5s ease;
+}
+
+.gift-open {
+
+    transform:
+        scale(1.3)
+        rotate(8deg);
+}
+
+
+/* =========================
+   SCENE 8
+========================= */
+
+.roses {
+
+    font-size: 55px;
+
+    line-height: 1.5;
+
+    animation:
+        roseAppear
+        1s
+        ease;
+}
+
+@keyframes roseAppear {
+
+    from {
+        transform: scale(.5);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.rose-text {
+
+    font-size: 20px;
+}
+
+
+/* =========================
+   SCENE 9
+========================= */
+
+.final-card {
+
+    width: min(350px, 90vw);
+
+    padding: 35px 25px;
+
+    background: white;
+
+    border-radius: 25px;
+
+    box-shadow:
+        0 15px 45px
+        rgba(0,0,0,.1);
+}
+
+.final-cat {
+    font-size: 65px;
+}
+
+.final-card p {
+
+    font-size: 18px;
+
+    line-height: 1.8;
+}
+
+.final-hearts {
+
+    font-size: 25px;
+
+    margin-top: 20px;
 }
