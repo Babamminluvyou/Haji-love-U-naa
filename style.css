@@ -1,0 +1,178 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    background: #fff3f6;
+    color: #68444c;
+}
+
+.scene {
+    position: relative;
+
+    width: 100%;
+    height: 100vh;
+
+    overflow: hidden;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* -------------------------
+   แมว
+------------------------- */
+
+.cat {
+    position: absolute;
+
+    left: 50%;
+    bottom: 25%;
+
+    font-size: 80px;
+
+    transform:
+        translateX(-50%)
+        scale(0.2);
+
+    animation:
+        catComeCloser 6s
+        cubic-bezier(0.2, 0.8, 0.2, 1)
+        forwards;
+}
+
+/* แมวเดิน/พุ่งเข้าหาหน้าจอ */
+
+@keyframes catComeCloser {
+
+    0% {
+        transform:
+            translateX(-50%)
+            scale(0.2);
+
+        opacity: 0.4;
+    }
+
+    25% {
+        transform:
+            translateX(-50%)
+            scale(0.5);
+
+        opacity: 0.8;
+    }
+
+    50% {
+        transform:
+            translateX(-50%)
+            scale(1);
+
+        opacity: 1;
+    }
+
+    70% {
+        transform:
+            translateX(-50%)
+            scale(1.8)
+            rotate(-3deg);
+    }
+
+    82% {
+        transform:
+            translateX(-50%)
+            scale(3)
+            rotate(4deg);
+    }
+
+    91% {
+        transform:
+            translateX(-50%)
+            scale(4.5)
+            rotate(-5deg);
+    }
+
+    96% {
+        transform:
+            translateX(-50%)
+            scale(5.5)
+            rotate(5deg);
+    }
+
+    100% {
+        transform:
+            translateX(-50%)
+            scale(6)
+            rotate(-4deg);
+    }
+}
+
+/* -------------------------
+   กล่องคำพูด
+------------------------- */
+
+.speech {
+
+    position: absolute;
+
+    left: 50%;
+    bottom: 10%;
+
+    transform: translateX(-50%);
+
+    width: 85%;
+    max-width: 360px;
+
+    padding: 16px 20px;
+
+    background: white;
+
+    border-radius: 25px;
+
+    text-align: center;
+
+    font-size: 18px;
+    line-height: 1.6;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.08);
+
+    opacity: 0;
+
+    animation:
+        speechAppear 1s
+        ease
+        4.5s
+        forwards;
+}
+
+@keyframes speechAppear {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            translateX(-50%)
+            translateY(15px);
+    }
+
+    70% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+
+        transform:
+            translateX(-50%)
+            translateY(0);
+    }
+}
