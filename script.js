@@ -118,6 +118,12 @@ setTimeout(() => {
 
         envelope.classList.add("open");
 
+        setTimeout(() => {
+
+            playGame.classList.remove("hidden");
+
+        }, 1200);
+
     }
 
 }, 1200);
