@@ -97,7 +97,7 @@ const playGame =
 
 startButton.addEventListener("click", function () {
 
-    /* เปลี่ยนฉาก */
+    /* ไปหน้าซองจดหมาย */
 
     document.body.classList.remove(
         "ready-scene"
@@ -107,34 +107,26 @@ startButton.addEventListener("click", function () {
         "message-scene"
     );
 
-
     /* ซ่อนปุ่มเกมก่อน */
 
     playGame.classList.add("hidden");
 
-
-    /*
-       รอให้ Scene 5 แสดงก่อน
-       แล้วค่อยเปิดซอง
-    */
-
-    setTimeout(function () {
-
-        envelope.classList.add("open");
-
-    }, 700);
+});
 
 
-    /*
-       หลังเปิดซองแล้ว
-       ให้ปุ่มเกมโผล่
-    */
+/* =========================
+   กดซอง → เปิด
+========================= */
+
+envelope.addEventListener("click", function () {
+
+    envelope.classList.add("open");
 
     setTimeout(function () {
 
         playGame.classList.remove("hidden");
 
-    }, 1800);
+    }, 1200);
 
 });
 
