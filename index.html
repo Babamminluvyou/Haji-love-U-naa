@@ -19,9 +19,13 @@
 
 <body>
 
-    <main class="scene">
+<main class="scene">
 
-        <!-- SCENE 1 -->
+    <!-- =========================
+         SCENE 1
+    ========================== -->
+
+    <section id="introScene" class="screen active">
 
         <div id="cat" class="cat">
             🐱
@@ -33,327 +37,311 @@
             เอาหูมานี่ มีไรจะบอก
         </div>
 
-
-        <!-- SCENE 2 -->
-
-        <section
-            id="letterScene"
-            class="letter-scene-content"
-        >
-
-            <div class="paw">
-                🐾
-            </div>
-
-            <div class="letter">
-
-                <div class="letter-icon">
-                    💌
-                </div>
-
-                <p>
-                    ลองเปิดดูจิ
-                    <br>
-                    มีไรจะบอก
-                </p>
-
-                <button id="openLetter">
-                    เปิดดู 💗
-                </button>
-
-            </div>
-
-        </section>
+    </section>
 
 
-        <!-- SCENE 3 : MUSIC -->
+    <!-- =========================
+         SCENE 2
+    ========================== -->
 
-        <section
-            id="musicScene"
-            class="screen"
-        >
+    <section id="letterScene" class="screen">
 
-            <div class="big-envelope">
+        <div class="paw">
+            🐾
+        </div>
+
+        <div class="letter">
+
+            <div class="letter-icon">
                 💌
             </div>
 
-            <div class="paper">
-
-                <p class="love-text">
-                    รักเธอที่สุดในโลกเยย
-                    <br><br>
-                    ขอให้เป็นเดือนที่ดีของเรา
-                    <br>
-                    หลังจากนี้และทุกๆเดือนนะคนเก่ง
-                </p>
-
-                <div class="music-box">
-
-                    <div class="music-icon">
-                        🎵
-                    </div>
-
-                    <p>
-                        เพลงนี้อยากให้เธอฟังนะ
-                    </p>
-
-                    <a
-                        href="https://youtu.be/sOeUsPxlnsg?si=WPzxxKCTgQo4pocx"
-                        target="_blank"
-                        class="music-button"
-                    >
-                        เปิดเพลงของเรา 🎧
-                    </a>
-
-                    <button
-                        id="finishMusic"
-                        class="next-button"
-                    >
-                        ฟังเสร็จแล้ว 💗
-                    </button>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- SCENE 4 -->
-
-        <section
-            id="readyScene"
-            class="screen"
-        >
-
-            <div class="ready-cat">
-                🐱
-            </div>
-
-            <h2>
-                พร้อมอ่านยางงง 🥺
-            </h2>
-
             <p>
-                มีอะไรอยากบอกอีกเยอะเลยนะ
+                ลองเปิดดูจิ
+                <br>
+                มีไรจะบอก
             </p>
 
-            <div class="ready-buttons">
+            <button id="openLetter">
+                เปิดดู 💗
+            </button>
 
-                <button
-                    id="startButton"
-                    class="yes-button"
-                >
-                    เริ่มเลย 💗
-                </button>
+        </div>
 
-                <button
-                    id="noButton"
-                    class="no-button"
-                >
-                    ไม่ 😼
-                </button>
+    </section>
 
+
+    <!-- =========================
+         SCENE 3 : MUSIC
+    ========================== -->
+
+    <section id="musicScene" class="screen">
+
+        <div class="music-card">
+
+            <div class="music-icon">
+                🎵
             </div>
 
-        </section>
-
-
-        <!-- SCENE 5 : ENVELOPE -->
-
-        <section
-    id="messageScene"
-    class="screen"
->
-
-    <div class="envelope-title">
-        💌
-        <br>
-        <span>มีจดหมายอีกฉบับนึงให้เธอ</span>
-    </div>
-
-    <button
-        id="envelope"
-        class="envelope"
-    >
-
-        <div class="envelope-flap">
-        </div>
-
-        <div class="envelope-heart">
-            💗
-        </div>
-
-        <div class="paper-message">
-
-            <p>
+            <p class="love-text">
                 รักเธอที่สุดในโลกเยย
                 <br><br>
-                ขอให้เป็นเดือนที่ดีของเราหลังจากนี้
+                ขอให้เป็นเดือนที่ดีของเรา
                 <br>
-                และทุกๆเดือนนะคนเก่ง
+                หลังจากนี้และทุกๆเดือนนะคนเก่ง
             </p>
+
+            <p>
+                เพลงนี้อยากให้เธอฟังนะ 💗
+            </p>
+
+            <a
+                href="https://youtu.be/sOeUsPxlnsg?si=WPzxxKCTgQo4pocx"
+                target="_blank"
+                class="music-button"
+            >
+                เปิดเพลงของเรา 🎧
+            </a>
+
+            <button
+                id="finishMusic"
+                class="next-button"
+            >
+                ฟังเสร็จแล้ว 💗
+            </button>
 
         </div>
 
-    </button>
+    </section>
 
-    <p class="envelope-hint">
-        แตะที่ซองเพื่อเปิด 💗
-    </p>
 
-    <button
-        id="playGame"
-        class="next-button hidden"
-    >
-        ไปเล่นเกมกัน 🎮
-    </button>
+    <!-- =========================
+         SCENE 4 : READY
+    ========================== -->
 
-</section>
+    <section id="readyScene" class="screen">
 
-        <!-- SCENE 6 : GAME -->
+        <div class="ready-cat">
+            🐱
+        </div>
 
-        <section
-            id="gameScene"
-            class="screen"
+        <h2>
+            พร้อมอ่านยางงง 🥺
+        </h2>
+
+        <p>
+            มีอะไรอยากบอกอีกเยอะเลยนะ
+        </p>
+
+        <div class="ready-buttons">
+
+            <button
+                id="startButton"
+                class="yes-button"
+            >
+                เริ่มเลย 💗
+            </button>
+
+            <button
+                id="noButton"
+                class="no-button"
+            >
+                ไม่ 😼
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         SCENE 5 : REAL ENVELOPE
+    ========================== -->
+
+    <section id="messageScene" class="screen">
+
+        <h2 class="envelope-title">
+            💌
+            <br>
+            <span>มีจดหมายอีกฉบับนึงให้เธอ</span>
+        </h2>
+
+        <button
+            id="envelope"
+            class="envelope"
         >
 
+            <div class="envelope-flap"></div>
+
+            <div class="envelope-heart">
+                💗
+            </div>
+
+            <div class="paper-message">
+
+                <p>
+                    รักเธอที่สุดในโลกเยย
+                    <br><br>
+                    ขอให้เป็นเดือนที่ดีของเราหลังจากนี้
+                    <br>
+                    และทุกๆเดือนนะคนเก่ง
+                </p>
+
+            </div>
+
+        </button>
+
+        <p class="envelope-hint">
+            แตะที่ซองเพื่อเปิด 💗
+        </p>
+
+        <button
+            id="playGame"
+            class="next-button hidden"
+        >
+            ไปเล่นเกมกัน 🎮
+        </button>
+
+    </section>
+
+
+    <!-- =========================
+         SCENE 6 : GAME
+    ========================== -->
+
+    <section id="gameScene" class="screen">
+
+        <h2>
+            ช่วยเก็บหัวใจให้แมวหน่อย 💗
+        </h2>
+
+        <p>
+            เก็บให้ครบ 10 ดวงภายใน 20 วินาที!
+        </p>
+
+        <div class="game-info">
+
+            ❤️
+            <span id="score">0</span>
+            / 10
+
+            <span class="timer">
+                ⏱️
+                <span id="timer">20</span>
+            </span>
+
+        </div>
+
+        <div
+            id="gameArea"
+            class="game-area"
+        ></div>
+
+        <p
+            id="gameMessage"
+            class="game-message"
+        ></p>
+
+    </section>
+
+
+    <!-- =========================
+         SCENE 7 : GIFT
+    ========================== -->
+
+    <section id="giftScene" class="screen">
+
+        <p>
+            เก่งมากกก 🥺💗
+        </p>
+
+        <div
+            id="giftBox"
+            class="gift-box"
+        >
+            🎁
+        </div>
+
+        <p>
+            มีของให้ด้วยนะ
+            <br>
+            ลองเปิดดูจิ
+        </p>
+
+        <button
+            id="openGift"
+            class="next-button"
+        >
+            เปิดกล่อง 🎁
+        </button>
+
+    </section>
+
+
+    <!-- =========================
+         SCENE 8 : ROSES
+    ========================== -->
+
+    <section id="roseScene" class="screen">
+
+        <div class="roses">
+            🌹🌹🌹
+            <br>
+            🌹🌹🌹
+        </div>
+
+        <p class="rose-text">
+            ให้เธอทั้งหมดเลย 💐
+        </p>
+
+        <button
+            id="lastButton"
+            class="next-button"
+        >
+            ยังมีอีกนะ 💌
+        </button>
+
+    </section>
+
+
+    <!-- =========================
+         SCENE 9 : FINAL
+    ========================== -->
+
+    <section id="finalScene" class="screen">
+
+        <div class="final-card">
+
+            <div class="final-cat">
+                🐱💗
+            </div>
+
             <h2>
-                ช่วยเก็บหัวใจให้แมวหน่อย 💗
+                ถึงคนเก่งของเค้า
             </h2>
 
             <p>
-                เก็บให้ครบ 10 ดวงภายใน 20 วินาที!
+                ขอบคุณที่อยู่ด้วยกันนะ
+                <br><br>
+                ขอให้เดือนนี้
+                และทุกๆเดือนหลังจากนี้
+                เป็นเดือนที่ดีของเรานะ
+                <br><br>
+                อย่าลืมรักเค้ามากๆนะ 💗
             </p>
 
-            <div class="game-info">
-
-                ❤️
-                <span id="score">0</span>
-                / 10
-
-                <span class="timer">
-                    ⏱️
-                    <span id="timer">20</span>
-                </span>
-
+            <div class="final-hearts">
+                💗 💕 💗
             </div>
 
-            <div
-                id="gameArea"
-                class="game-area"
-            ></div>
+        </div>
 
-            <p
-                id="gameMessage"
-                class="game-message"
-            ></p>
+    </section>
 
-        </section>
+</main>
 
 
-        <!-- SCENE 7 : GIFT -->
-
-        <section
-            id="giftScene"
-            class="screen"
-        >
-
-            <p>
-                เก่งมากกก 🥺💗
-            </p>
-
-            <div
-                id="giftBox"
-                class="gift-box"
-            >
-                🎁
-            </div>
-
-            <p>
-                มีของให้ด้วยนะ
-                <br>
-                ลองเปิดดูจิ
-            </p>
-
-            <button
-                id="openGift"
-                class="next-button"
-            >
-                เปิดกล่อง 🎁
-            </button>
-
-        </section>
-
-
-        <!-- SCENE 8 : ROSES -->
-
-        <section
-            id="roseScene"
-            class="screen"
-        >
-
-            <div class="roses">
-                🌹🌹🌹
-                <br>
-                🌹🌹🌹
-            </div>
-
-            <p class="rose-text">
-                ให้เธอทั้งหมดเลย 💐
-            </p>
-
-            <button
-                id="lastButton"
-                class="next-button"
-            >
-                ยังมีอีกนะ 💌
-            </button>
-
-        </section>
-
-
-        <!-- SCENE 9 : FINAL -->
-
-        <section
-            id="finalScene"
-            class="screen"
-        >
-
-            <div class="final-card">
-
-                <div class="final-cat">
-                    🐱💗
-                </div>
-
-                <h2>
-                    ถึงคนเก่งของเค้า
-                </h2>
-
-                <p>
-                    ขอบคุณที่อยู่ด้วยกันนะ
-                    <br><br>
-                    ขอให้เดือนนี้
-                    และทุกๆเดือนหลังจากนี้
-                    เป็นเดือนที่ดีของเรานะ
-                    <br><br>
-                    อย่าลืมรักเค้ามากๆนะ 💗
-                </p>
-
-                <div class="final-hearts">
-                    💗 💕 💗
-                </div>
-
-            </div>
-
-        </section>
-
-    </main>
-
-
-    <!-- สำคัญมาก -->
-    <script src="script.js"></script>
+<script src="script.js"></script>
 
 </body>
-
 </html>
