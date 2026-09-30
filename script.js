@@ -1,10 +1,67 @@
 /* =================================
+   GET SCENES
+================================= */
+
+const scenes = {
+
+    intro:
+        document.getElementById("introScene"),
+
+    letter:
+        document.getElementById("letterScene"),
+
+    music:
+        document.getElementById("musicScene"),
+
+    ready:
+        document.getElementById("readyScene"),
+
+    message:
+        document.getElementById("messageScene"),
+
+    game:
+        document.getElementById("gameScene"),
+
+    gift:
+        document.getElementById("giftScene"),
+
+    rose:
+        document.getElementById("roseScene"),
+
+    final:
+        document.getElementById("finalScene")
+
+};
+
+
+/* =================================
+   CHANGE SCENE
+================================= */
+
+function showScene(scene) {
+
+    Object.values(scenes).forEach(function (item) {
+
+        if (item) {
+            item.classList.remove("active");
+        }
+
+    });
+
+    if (scene) {
+        scene.classList.add("active");
+    }
+
+}
+
+
+/* =================================
    SCENE 1 → SCENE 2
 ================================= */
 
 setTimeout(function () {
 
-    document.body.classList.add("letter-scene");
+    showScene(scenes.letter);
 
 }, 7500);
 
@@ -18,9 +75,7 @@ const openLetter =
 
 openLetter.addEventListener("click", function () {
 
-    document.body.classList.remove("letter-scene");
-
-    document.body.classList.add("music-scene");
+    showScene(scenes.music);
 
 });
 
@@ -34,9 +89,7 @@ const finishMusic =
 
 finishMusic.addEventListener("click", function () {
 
-    document.body.classList.remove("music-scene");
-
-    document.body.classList.add("ready-scene");
+    showScene(scenes.ready);
 
 });
 
@@ -48,30 +101,35 @@ finishMusic.addEventListener("click", function () {
 const noButton =
     document.getElementById("noButton");
 
-
 function moveNoButton() {
+
+    const maxX =
+        window.innerWidth - 120;
+
+    const maxY =
+        window.innerHeight - 80;
 
     const x =
         Math.random() *
-        (window.innerWidth - 120);
+        Math.max(maxX, 20);
 
     const y =
         Math.random() *
-        (window.innerHeight - 80);
+        Math.max(maxY, 20);
 
     noButton.style.position = "fixed";
 
-    noButton.style.left = x + "px";
+    noButton.style.left =
+        x + "px";
 
-    noButton.style.top = y + "px";
+    noButton.style.top =
+        y + "px";
 }
-
 
 noButton.addEventListener(
     "mouseenter",
     moveNoButton
 );
-
 
 noButton.addEventListener(
     "touchstart",
@@ -81,8 +139,6 @@ noButton.addEventListener(
 
 /* =================================
    SCENE 4 → SCENE 5
-
-   กดเริ่มเลย
 ================================= */
 
 const startButton =
@@ -95,59 +151,62 @@ const playGame =
     document.getElementById("playGame");
 
 
-startButton.addEventListener("click", function () {
+startButton.addEventListener(
+    "click",
+    function () {
 
-    /* ไปหน้าซองจดหมาย */
+        playGame.classList.add("hidden");
 
-    document.body.classList.remove(
-        "ready-scene"
-    );
+        envelope.classList.remove("open");
 
-    document.body.classList.add(
-        "message-scene"
-    );
+        showScene(scenes.message);
 
-    /* ซ่อนปุ่มเกมก่อน */
-
-    playGame.classList.add("hidden");
-
-});
+    }
+);
 
 
-/* =========================
-   กดซอง → เปิด
-========================= */
+/* =================================
+   กดซอง → เปิดซอง
+================================= */
 
-envelope.addEventListener("click", function () {
+envelope.addEventListener(
+    "click",
+    function () {
 
-    envelope.classList.add("open");
+        if (
+            envelope.classList.contains("open")
+        ) {
+            return;
+        }
 
-    setTimeout(function () {
+        envelope.classList.add("open");
 
-        playGame.classList.remove("hidden");
+        setTimeout(function () {
 
-    }, 1200);
+            playGame.classList.remove(
+                "hidden"
+            );
 
-});
+        }, 1200);
+
+    }
+);
 
 
 /* =================================
    SCENE 5 → SCENE 6
 ================================= */
 
-playGame.addEventListener("click", function () {
+playGame.addEventListener(
+    "click",
+    function () {
 
-    document.body.classList.remove(
-        "message-scene"
-    );
+        showScene(scenes.game);
 
-    document.body.classList.add(
-        "game-scene"
-    );
+        startGame();
 
-    startGame();
-
-});
+    }
+);
 
 
 /* =================================
@@ -171,12 +230,16 @@ let score = 0;
 
 let timeLeft = 20;
 
-let gameTimer;
+let gameTimer = null;
 
-let heartTimer;
+let heartTimer = null;
 
 
 function startGame() {
+
+    clearInterval(gameTimer);
+
+    clearInterval(heartTimer);
 
     score = 0;
 
@@ -190,31 +253,34 @@ function startGame() {
 
     gameArea.innerHTML = "";
 
-
     createHeart();
 
+    heartTimer =
+        setInterval(
+            createHeart,
+            900
+        );
 
-    heartTimer = setInterval(
-        createHeart,
-        900
-    );
+    gameTimer =
+        setInterval(
+            function () {
 
+                timeLeft--;
 
-    gameTimer = setInterval(function () {
+                timerElement.textContent =
+                    timeLeft;
 
-        timeLeft--;
+                if (
+                    timeLeft <= 0
+                ) {
 
-        timerElement.textContent =
-            timeLeft;
+                    endGame();
 
+                }
 
-        if (timeLeft <= 0) {
-
-            endGame();
-
-        }
-
-    }, 1000);
+            },
+            1000
+        );
 
 }
 
@@ -222,45 +288,39 @@ function startGame() {
 function createHeart() {
 
     if (
-        !document.body.classList.contains(
-            "game-scene"
+        !scenes.game.classList.contains(
+            "active"
         )
     ) {
         return;
     }
 
-
     const heart =
-        document.createElement("button");
-
+        document.createElement(
+            "button"
+        );
 
     heart.className =
         "game-heart";
 
-
     heart.textContent =
         "❤️";
 
-
     const maxX =
-        gameArea.clientWidth - 60;
-
+        gameArea.clientWidth - 50;
 
     const maxY =
-        gameArea.clientHeight - 60;
-
+        gameArea.clientHeight - 50;
 
     heart.style.left =
         Math.random() *
         Math.max(maxX, 10)
         + "px";
 
-
     heart.style.top =
         Math.random() *
         Math.max(maxY, 10)
         + "px";
-
 
     heart.addEventListener(
         "click",
@@ -271,11 +331,11 @@ function createHeart() {
             scoreElement.textContent =
                 score;
 
-
             heart.remove();
 
-
-            if (score >= 10) {
+            if (
+                score >= 10
+            ) {
 
                 winGame();
 
@@ -284,8 +344,9 @@ function createHeart() {
         }
     );
 
-
-    gameArea.appendChild(heart);
+    gameArea.appendChild(
+        heart
+    );
 
 }
 
@@ -301,12 +362,10 @@ function endGame() {
     gameMessage.textContent =
         "ไม่เป็นไร เอาใหม่ได้ 💗";
 
-
-    setTimeout(function () {
-
-        startGame();
-
-    }, 1800);
+    setTimeout(
+        startGame,
+        1800
+    );
 
 }
 
@@ -322,18 +381,16 @@ function winGame() {
     gameMessage.textContent =
         "เย่! เก็บครบแล้ววว 🥺💗";
 
+    setTimeout(
+        function () {
 
-    setTimeout(function () {
+            showScene(
+                scenes.gift
+            );
 
-        document.body.classList.remove(
-            "game-scene"
-        );
-
-        document.body.classList.add(
-            "gift-scene"
-        );
-
-    }, 1800);
+        },
+        1800
+    );
 
 }
 
@@ -349,26 +406,27 @@ const giftBox =
     document.getElementById("giftBox");
 
 
-openGift.addEventListener("click", function () {
+openGift.addEventListener(
+    "click",
+    function () {
 
-    giftBox.classList.add(
-        "gift-open"
-    );
-
-
-    setTimeout(function () {
-
-        document.body.classList.remove(
-            "gift-scene"
+        giftBox.classList.add(
+            "gift-open"
         );
 
-        document.body.classList.add(
-            "rose-scene"
+        setTimeout(
+            function () {
+
+                showScene(
+                    scenes.rose
+                );
+
+            },
+            1000
         );
 
-    }, 1000);
-
-});
+    }
+);
 
 
 /* =================================
@@ -378,15 +436,13 @@ openGift.addEventListener("click", function () {
 const lastButton =
     document.getElementById("lastButton");
 
+lastButton.addEventListener(
+    "click",
+    function () {
 
-lastButton.addEventListener("click", function () {
+        showScene(
+            scenes.final
+        );
 
-    document.body.classList.remove(
-        "rose-scene"
-    );
-
-    document.body.classList.add(
-        "final-scene"
-    );
-
-});
+    }
+);
