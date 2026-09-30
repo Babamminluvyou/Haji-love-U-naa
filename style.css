@@ -176,3 +176,217 @@ body {
             translateY(0);
     }
 }
+/* =================================
+   SCENE 2 : จดหมาย
+================================= */
+
+.letter-scene-content {
+
+    position: absolute;
+
+    inset: 0;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    flex-direction: column;
+
+    background: #fff3f6;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transform: scale(0.9);
+
+    transition:
+        opacity 1s ease,
+        transform 1s ease;
+}
+
+
+/* เมื่อ Scene 2 เริ่ม */
+
+body.letter-scene .letter-scene-content {
+
+    opacity: 1;
+
+    pointer-events: auto;
+
+    transform: scale(1);
+}
+
+
+/* ซ่อนแมว Scene 1 */
+
+body.letter-scene .cat,
+body.letter-scene .speech {
+
+    opacity: 0;
+
+    transition: opacity 0.8s ease;
+}
+
+
+/* -------------------------
+   อุ้งเท้า
+------------------------- */
+
+.paw {
+
+    font-size: 100px;
+
+    position: absolute;
+
+    top: -100px;
+
+    right: 20px;
+
+    transform: rotate(-25deg);
+
+    animation: pawComeIn 1.5s ease forwards;
+}
+
+
+@keyframes pawComeIn {
+
+    0% {
+
+        top: -100px;
+
+        transform:
+            rotate(-25deg)
+            translateX(80px);
+
+    }
+
+    100% {
+
+        top: 18%;
+
+        transform:
+            rotate(-15deg)
+            translateX(0);
+
+    }
+}
+
+
+/* -------------------------
+   จดหมาย
+------------------------- */
+
+.letter {
+
+    width: 82%;
+
+    max-width: 340px;
+
+    padding: 30px 22px;
+
+    background: #fffdf8;
+
+    border-radius: 20px;
+
+    text-align: center;
+
+    box-shadow:
+        0 15px 45px
+        rgba(0, 0, 0, 0.12);
+
+    transform:
+        translateY(40px)
+        rotate(-2deg);
+
+    opacity: 0;
+
+    animation:
+        letterAppear 1s
+        ease
+        0.7s
+        forwards;
+}
+
+
+@keyframes letterAppear {
+
+    to {
+
+        transform:
+            translateY(0)
+            rotate(-2deg);
+
+        opacity: 1;
+
+    }
+
+}
+
+
+/* ไอคอนจดหมาย */
+
+.letter-icon {
+
+    font-size: 65px;
+
+    margin-bottom: 10px;
+}
+
+
+/* ข้อความ */
+
+.letter p {
+
+    font-size: 21px;
+
+    line-height: 1.6;
+
+    color: #704650;
+
+    margin: 10px 0 22px;
+
+}
+
+
+/* -------------------------
+   ปุ่ม
+------------------------- */
+
+#openLetter {
+
+    border: none;
+
+    padding: 14px 28px;
+
+    border-radius: 999px;
+
+    background: #ff8fab;
+
+    color: white;
+
+    font-size: 17px;
+
+    font-weight: bold;
+
+    box-shadow:
+        0 6px 15px
+        rgba(255, 143, 171, 0.3);
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+#openLetter:active {
+
+    transform: scale(0.92);
+
+    box-shadow: none;
+
+}
