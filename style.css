@@ -17,9 +17,9 @@ body {
 }
 
 
-/* =========================
+/* =================================
    COMMON SCREEN
-========================= */
+================================= */
 
 .scene {
     position: relative;
@@ -30,7 +30,6 @@ body {
 
 .screen {
     position: absolute;
-
     inset: 0;
 
     width: 100%;
@@ -38,7 +37,6 @@ body {
 
     display: flex;
     flex-direction: column;
-
     justify-content: center;
     align-items: center;
 
@@ -50,14 +48,13 @@ body {
 
     opacity: 0;
     visibility: hidden;
-
     pointer-events: none;
 
-    transform: scale(.96);
+    transform: scale(0.96);
 
     transition:
-        opacity .5s ease,
-        transform .5s ease;
+        opacity 0.5s ease,
+        transform 0.5s ease;
 
     z-index: 10;
 }
@@ -70,9 +67,9 @@ body {
 }
 
 
-/* =========================
-   SCENE 1
-========================= */
+/* =================================
+   SCENE 1 : CAT
+================================= */
 
 .cat {
     position: absolute;
@@ -84,11 +81,12 @@ body {
 
     transform:
         translateX(-50%)
-        scale(.2);
+        scale(0.2);
 
     animation:
-        catComeCloser 6s
-        cubic-bezier(.2,.8,.2,1)
+        catComeCloser
+        6s
+        cubic-bezier(0.2, 0.8, 0.2, 1)
         forwards;
 }
 
@@ -97,23 +95,25 @@ body {
     0% {
         transform:
             translateX(-50%)
-            scale(.2);
+            scale(0.2);
 
-        opacity: .4;
+        opacity: 0.4;
     }
 
     25% {
         transform:
             translateX(-50%)
-            scale(.5);
+            scale(0.5);
 
-        opacity: .8;
+        opacity: 0.8;
     }
 
     50% {
         transform:
             translateX(-50%)
             scale(1);
+
+        opacity: 1;
     }
 
     70% {
@@ -159,9 +159,6 @@ body {
     left: 50%;
     bottom: 10%;
 
-    transform:
-        translateX(-50%);
-
     width: 85%;
     max-width: 360px;
 
@@ -178,9 +175,12 @@ body {
 
     box-shadow:
         0 10px 30px
-        rgba(0,0,0,.08);
+        rgba(0, 0, 0, 0.08);
 
     opacity: 0;
+
+    transform:
+        translateX(-50%);
 
     animation:
         speechAppear
@@ -214,13 +214,12 @@ body {
 }
 
 
-/* =========================
-   SCENE 2
-========================= */
+/* =================================
+   SCENE 2 : LETTER
+================================= */
 
 .paw {
     font-size: 70px;
-
     margin-bottom: 10px;
 
     animation:
@@ -242,7 +241,6 @@ body {
     }
 }
 
-
 .letter {
     width: min(330px, 90vw);
 
@@ -254,7 +252,7 @@ body {
 
     box-shadow:
         0 15px 40px
-        rgba(0,0,0,.1);
+        rgba(0, 0, 0, 0.1);
 }
 
 .letter-icon {
@@ -266,6 +264,10 @@ body {
     line-height: 1.7;
 }
 
+
+/* =================================
+   BUTTONS
+================================= */
 
 button {
     font-family: inherit;
@@ -290,23 +292,27 @@ button {
 
     box-shadow:
         0 8px 20px
-        rgba(180,90,110,.2);
+        rgba(180, 90, 110, 0.2);
 
     transition:
-        transform .2s ease;
+        transform 0.2s ease;
 }
 
 .letter button:active,
 .next-button:active,
 .yes-button:active,
 .no-button:active {
-    transform: scale(.95);
+    transform: scale(0.95);
+}
+
+.hidden {
+    display: none !important;
 }
 
 
-/* =========================
-   SCENE 3
-========================= */
+/* =================================
+   SCENE 3 : MUSIC
+================================= */
 
 .music-card {
 
@@ -320,7 +326,7 @@ button {
 
     box-shadow:
         0 15px 45px
-        rgba(0,0,0,.1);
+        rgba(0, 0, 0, 0.1);
 }
 
 .music-icon {
@@ -336,9 +342,9 @@ button {
 
     display: block;
 
-    margin: 20px auto;
-
     width: fit-content;
+
+    margin: 20px auto;
 
     padding: 14px 22px;
 
@@ -357,14 +363,10 @@ button {
     margin-top: 10px;
 }
 
-.hidden {
-    display: none !important;
-}
 
-
-/* =========================
-   SCENE 4
-========================= */
+/* =================================
+   SCENE 4 : READY
+================================= */
 
 .ready-cat {
     font-size: 80px;
@@ -385,10 +387,9 @@ button {
 }
 
 
-/* =========================
-   SCENE 5
-   ENVELOPE
-========================= */
+/* =================================
+   SCENE 5 : ENVELOPE
+================================= */
 
 .envelope-title {
 
@@ -409,7 +410,9 @@ button {
 }
 
 
-/* ซอง */
+/* ---------------------------------
+   ซอง
+--------------------------------- */
 
 .envelope {
 
@@ -428,15 +431,19 @@ button {
 
     box-shadow:
         0 18px 45px
-        rgba(0,0,0,.15);
+        rgba(0, 0, 0, 0.15);
 
     cursor: pointer;
 
     overflow: visible;
+
+    z-index: 1;
 }
 
 
-/* ฝากระดาษ */
+/* ---------------------------------
+   ฝากระดาษ
+--------------------------------- */
 
 .envelope-flap {
 
@@ -460,13 +467,15 @@ button {
     transform-origin: top center;
 
     transition:
-        transform .8s ease;
+        transform 0.8s ease;
 
     z-index: 4;
 }
 
 
-/* หัวใจ */
+/* ---------------------------------
+   หัวใจบนซอง
+--------------------------------- */
 
 .envelope-heart {
 
@@ -483,11 +492,13 @@ button {
     z-index: 5;
 
     transition:
-        opacity .4s ease;
+        opacity 0.4s ease;
 }
 
 
-/* กระดาษ */
+/* ---------------------------------
+   กระดาษด้านใน
+--------------------------------- */
 
 .paper-message {
 
@@ -509,7 +520,6 @@ button {
     display: flex;
 
     align-items: center;
-
     justify-content: center;
 
     opacity: 0;
@@ -518,13 +528,21 @@ button {
         translateY(30px);
 
     transition:
-        transform .8s ease .3s,
-        opacity .5s ease .3s;
+        transform 0.8s ease 0.3s,
+        opacity 0.5s ease 0.3s;
 
-    z-index: 2;
+    /*
+       สำคัญ:
+       กระดาษต้องอยู่ด้านหน้าซอง
+    */
+    z-index: 10;
 }
 
 .paper-message p {
+
+    position: relative;
+
+    z-index: 21;
 
     margin: 0;
 
@@ -536,27 +554,45 @@ button {
 }
 
 
-/* เปิดซอง */
+/* ---------------------------------
+   เปิดซอง
+--------------------------------- */
 
 .envelope.open .envelope-flap {
 
+    /*
+       ตอนเปิดฝากระดาษลงไปด้านหลัง
+    */
     transform:
         rotateX(180deg);
+
+    z-index: 1;
 }
 
 .envelope.open .envelope-heart {
 
     opacity: 0;
+
+    z-index: 2;
 }
 
 .envelope.open .paper-message {
 
     opacity: 1;
 
+    /*
+       กระดาษลอยออกมาด้านหน้า
+    */
     transform:
-        translateY(-110px);
+        translateY(-145px);
+
+    z-index: 20;
 }
 
+
+/* ---------------------------------
+   ข้อความใต้ซอง
+--------------------------------- */
 
 .envelope-hint {
 
@@ -568,15 +604,19 @@ button {
 }
 
 
+/* ---------------------------------
+   ปุ่มไปเกม
+--------------------------------- */
+
 #messageScene .next-button {
 
     margin-top: 100px;
 }
 
 
-/* =========================
-   SCENE 6 GAME
-========================= */
+/* =================================
+   SCENE 6 : GAME
+================================= */
 
 .game-info {
 
@@ -605,7 +645,7 @@ button {
 
     box-shadow:
         inset 0 0 20px
-        rgba(0,0,0,.05);
+        rgba(0, 0, 0, 0.05);
 
     overflow: hidden;
 }
@@ -614,14 +654,16 @@ button {
 
     position: absolute;
 
-    background: none;
-
     padding: 0;
+
+    background: none;
 
     font-size: 35px;
 
     animation:
-        heartPop .3s ease;
+        heartPop
+        0.3s
+        ease;
 }
 
 @keyframes heartPop {
@@ -643,9 +685,9 @@ button {
 }
 
 
-/* =========================
-   SCENE 7
-========================= */
+/* =================================
+   SCENE 7 : GIFT
+================================= */
 
 .gift-box {
 
@@ -654,7 +696,7 @@ button {
     margin: 20px;
 
     transition:
-        transform .5s ease;
+        transform 0.5s ease;
 }
 
 .gift-open {
@@ -665,9 +707,9 @@ button {
 }
 
 
-/* =========================
-   SCENE 8
-========================= */
+/* =================================
+   SCENE 8 : ROSES
+================================= */
 
 .roses {
 
@@ -684,7 +726,7 @@ button {
 @keyframes roseAppear {
 
     from {
-        transform: scale(.5);
+        transform: scale(0.5);
         opacity: 0;
     }
 
@@ -695,14 +737,13 @@ button {
 }
 
 .rose-text {
-
     font-size: 20px;
 }
 
 
-/* =========================
-   SCENE 9
-========================= */
+/* =================================
+   SCENE 9 : FINAL
+================================= */
 
 .final-card {
 
@@ -716,7 +757,7 @@ button {
 
     box-shadow:
         0 15px 45px
-        rgba(0,0,0,.1);
+        rgba(0, 0, 0, 0.1);
 }
 
 .final-cat {
@@ -735,40 +776,4 @@ button {
     font-size: 25px;
 
     margin-top: 20px;
-}
-/* FIX: กระดาษต้องลอยออกมาด้านหน้าซอง */
-
-.envelope {
-    z-index: 1;
-}
-
-.envelope-flap {
-    z-index: 4;
-}
-
-.paper-message {
-    z-index: 10;
-}
-
-/* ตอนเปิด ให้กระดาษลอยออกมาด้านหน้า */
-.envelope.open .paper-message {
-    z-index: 20;
-    transform: translateY(-145px);
-}
-
-/* ทำให้ข้อความอยู่ด้านบนสุด */
-.paper-message p {
-    position: relative;
-    z-index: 21;
-}
-.envelope.open .envelope-flap {
-    z-index: 1;
-}
-
-.envelope.open .envelope-heart {
-    z-index: 2;
-}
-
-.envelope.open .paper-message {
-    z-index: 20;
 }
