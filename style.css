@@ -1080,3 +1080,712 @@ body.final-scene #finalScene {
         transform: translateY(-8px);
     }
 }
+/* =================================
+   ALL SCENES
+================================= */
+
+.screen {
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    padding: 25px;
+
+    background: #fff3f6;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+
+    transform: scale(0.96);
+
+    transition:
+        opacity 0.7s ease,
+        transform 0.7s ease;
+
+    z-index: 20;
+}
+
+
+/* =================================
+   SCENE 2
+================================= */
+
+.letter-scene-content {
+    position: absolute;
+
+    inset: 0;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    flex-direction: column;
+
+    background: #fff3f6;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+
+    transform: scale(0.9);
+
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s ease;
+
+    z-index: 10;
+}
+
+
+body.letter-scene .letter-scene-content {
+    opacity: 1;
+
+    visibility: visible;
+
+    pointer-events: auto;
+
+    transform: scale(1);
+}
+
+
+body.letter-scene .cat,
+body.letter-scene .speech {
+    opacity: 0;
+
+    pointer-events: none;
+}
+
+
+/* =================================
+   PAW
+================================= */
+
+.paw {
+    position: absolute;
+
+    top: 10%;
+
+    right: 20px;
+
+    font-size: 90px;
+
+    transform: rotate(-15deg);
+
+    animation:
+        pawMove 1.5s ease;
+}
+
+
+@keyframes pawMove {
+
+    0% {
+        transform:
+            translateX(100px)
+            rotate(-25deg);
+    }
+
+    100% {
+        transform:
+            translateX(0)
+            rotate(-15deg);
+    }
+}
+
+
+/* =================================
+   LETTER
+================================= */
+
+.letter {
+    width: 82%;
+
+    max-width: 340px;
+
+    padding: 30px 22px;
+
+    background: #fffdf8;
+
+    border-radius: 20px;
+
+    text-align: center;
+
+    box-shadow:
+        0 15px 45px
+        rgba(0, 0, 0, 0.12);
+
+    animation:
+        letterAppear 0.8s ease;
+}
+
+
+@keyframes letterAppear {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(30px)
+            rotate(-3deg);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            rotate(-2deg);
+    }
+}
+
+
+.letter-icon {
+    font-size: 65px;
+}
+
+
+.letter p {
+    font-size: 21px;
+
+    line-height: 1.6;
+
+    color: #704650;
+
+    margin: 10px 0 22px;
+}
+
+
+#openLetter {
+    border: none;
+
+    padding: 14px 28px;
+
+    border-radius: 999px;
+
+    background: #ff8fab;
+
+    color: white;
+
+    font-size: 17px;
+
+    font-weight: bold;
+}
+
+
+/* =================================
+   SCENE 3
+================================= */
+
+body.music-scene #musicScene {
+    opacity: 1;
+
+    visibility: visible;
+
+    pointer-events: auto;
+
+    transform: scale(1);
+}
+
+
+.big-envelope {
+    font-size: 90px;
+
+    margin-bottom: 10px;
+
+    animation:
+        float 2s ease-in-out infinite;
+}
+
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+
+.paper {
+    width: 88%;
+
+    max-width: 380px;
+
+    padding: 25px 20px;
+
+    background: #fffdf8;
+
+    border-radius: 25px;
+
+    box-shadow:
+        0 15px 40px
+        rgba(0, 0, 0, 0.1);
+}
+
+
+.love-text {
+    font-size: 20px !important;
+
+    font-weight: bold;
+
+    color: #704650 !important;
+}
+
+
+.music-box {
+    margin-top: 20px;
+
+    padding: 18px;
+
+    background: #fff3f6;
+
+    border-radius: 20px;
+}
+
+
+.music-icon {
+    font-size: 35px;
+}
+
+
+.music-button {
+    display: inline-block;
+
+    padding: 13px 20px;
+
+    border-radius: 999px;
+
+    background: #ff8fab;
+
+    color: white;
+
+    text-decoration: none;
+
+    font-weight: bold;
+}
+
+
+.next-button {
+    border: none;
+
+    padding: 13px 22px;
+
+    border-radius: 999px;
+
+    background: #ff8fab;
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    margin: 8px;
+}
+
+
+.hidden {
+    display: none !important;
+}
+
+
+/* =================================
+   SCENE 4
+================================= */
+
+body.ready-scene #readyScene {
+    opacity: 1;
+
+    visibility: visible;
+
+    pointer-events: auto;
+
+    transform: scale(1);
+}
+
+
+.ready-cat {
+    font-size: 100px;
+
+    animation:
+        bounce 1.2s infinite;
+}
+
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-12px);
+    }
+}
+
+
+.ready-buttons {
+    display: flex;
+
+    gap: 15px;
+
+    margin-top: 20px;
+}
+
+
+.yes-button,
+.no-button {
+    border: none;
+
+    padding: 13px 22px;
+
+    border-radius: 999px;
+
+    font-size: 16px;
+
+    font-weight: bold;
+}
+
+
+.yes-button {
+    background: #ff8fab;
+
+    color: white;
+}
+
+
+.no-button {
+    background: #eeeeee;
+
+    color: #777;
+}
+
+
+/* =================================
+   SCENE 5
+================================= */
+
+body.message-scene #messageScene {
+    opacity: 1;
+
+    visibility: visible;
+
+    pointer-events: auto;
+
+    transform: scale(1);
+}
+
+
+.envelope {
+    position: relative;
+
+    width: 300px;
+
+    height: 200px;
+
+    background: #f5d9df;
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 15px 40px
+        rgba(0, 0, 0, 0.12);
+}
+
+
+.envelope-flap {
+    position: absolute;
+
+    top: 0;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 110px;
+
+    background: #eebbc5;
+
+    clip-path:
+        polygon(
+            0 0,
+            100% 0,
+            50% 100%
+        );
+
+    transform-origin: top center;
+
+    transition:
+        transform 0.8s ease;
+
+    z-index: 3;
+
+    font-size: 40px;
+
+    padding-top: 20px;
+}
+
+
+.envelope.open .envelope-flap {
+    transform: rotateX(180deg);
+}
+
+
+.paper-message {
+    position: absolute;
+
+    left: 15px;
+
+    right: 15px;
+
+    top: 20px;
+
+    min-height: 165px;
+
+    background: #fffdf8;
+
+    border-radius: 8px;
+
+    padding: 25px 15px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    z-index: 2;
+
+    transform: translateY(60px);
+
+    opacity: 0;
+
+    transition:
+        transform 0.8s ease 0.3s,
+        opacity 0.5s ease 0.3s;
+}
+
+
+.envelope.open .paper-message {
+    transform: translateY(-100px);
+
+    opacity: 1;
+}
+
+
+.paper-message p {
+    color: #704650;
+
+    font-size: 17px;
+
+    line-height: 1.7;
+}
+
+
+/* =================================
+   SCENE 6
+================================= */
+
+body.game-scene #gameScene {
+    opacity: 1;
+
+    visibility: visible;
+
+    pointer-events: auto;
+
+    transform: scale(1);
+}
+
+
+.game-info {
+    font-size: 20px;
+
+    font-weight: bold;
+
+    margin: 10px;
+}
+
+
+.timer {
+    margin-left: 20px;
+}
+
+
+.game-area {
+    position: relative;
+
+    width: 92%;
+
+    max-width: 380px;
+
+    height: 55vh;
+
+    min-height: 300px;
+
+    background: white;
+
+    border: 3px solid #ffe0e7;
+
+    border-radius: 25px;
+
+    overflow: hidden;
+}
+
+
+.game-heart {
+    position: absolute;
+
+    width: 55px;
+
+    height: 55px;
+
+    padding: 0;
+
+    border: none;
+
+    background: transparent;
+
+    font-size: 35px;
+}
+
+
+.game-message {
+    min-height: 30px;
+
+    font-weight: bold;
+}
+
+
+/* =================================
+   SCENE 7
+================================= */
+
+body.gift-scene #giftScene {
+    opacity: 1;
+
+    visibility: visible;
+
+    pointer-events: auto;
+
+    transform: scale(1);
+}
+
+
+.gift-box {
+    font-size: 130px;
+
+    transition:
+        transform 0.5s ease;
+}
+
+
+.gift-box.gift-open {
+    transform:
+        scale(1.25)
+        rotate(8deg);
+}
+
+
+/* =================================
+   SCENE 8
+================================= */
+
+body.rose-scene #roseScene {
+    opacity: 1;
+
+    visibility: visible;
+
+    pointer-events: auto;
+
+    transform: scale(1);
+}
+
+
+.roses {
+    font-size: 60px;
+
+    line-height: 1.4;
+}
+
+
+.rose-text {
+    font-size: 23px !important;
+
+    font-weight: bold;
+}
+
+
+/* =================================
+   SCENE 9
+================================= */
+
+body.final-scene #finalScene {
+    opacity: 1;
+
+    visibility: visible;
+
+    pointer-events: auto;
+
+    transform: scale(1);
+}
+
+
+.final-card {
+    width: 88%;
+
+    max-width: 380px;
+
+    padding: 35px 25px;
+
+    background: white;
+
+    border-radius: 30px;
+
+    box-shadow:
+        0 15px 50px
+        rgba(0, 0, 0, 0.1);
+}
+
+
+.final-cat {
+    font-size: 75px;
+}
+
+
+.final-card h2 {
+    color: #704650;
+}
+
+
+.final-card p {
+    color: #805861;
+
+    font-size: 18px;
+
+    line-height: 1.8;
+}
+
+
+.final-hearts {
+    font-size: 28px;
+
+    margin-top: 20px;
+}
