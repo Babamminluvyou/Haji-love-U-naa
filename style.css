@@ -761,3 +761,14 @@ button {
     position: relative;
     z-index: 21;
 }
+.envelope.open .envelope-flap {
+    z-index: 1;
+}
+
+.envelope.open .envelope-heart {
+    z-index: 2;
+}
+
+.envelope.open .paper-message {
+    z-index: 20;
+}
