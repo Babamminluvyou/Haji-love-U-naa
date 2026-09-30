@@ -1,17 +1,20 @@
-/* =========================
+/* =================================
    SCENE 1 → SCENE 2
-========================= */
+================================= */
 
-setTimeout(() => {
+setTimeout(function () {
+
     document.body.classList.add("letter-scene");
+
 }, 7500);
 
 
-/* =========================
+/* =================================
    SCENE 2 → SCENE 3
-========================= */
+================================= */
 
-const openLetter = document.getElementById("openLetter");
+const openLetter =
+    document.getElementById("openLetter");
 
 openLetter.addEventListener("click", function () {
 
@@ -22,11 +25,12 @@ openLetter.addEventListener("click", function () {
 });
 
 
-/* =========================
+/* =================================
    SCENE 3 → SCENE 4
-========================= */
+================================= */
 
-const finishMusic = document.getElementById("finishMusic");
+const finishMusic =
+    document.getElementById("finishMusic");
 
 finishMusic.addEventListener("click", function () {
 
@@ -37,67 +41,96 @@ finishMusic.addEventListener("click", function () {
 });
 
 
-/* =========================
-   ปุ่ม "ไม่" หนี
-========================= */
+/* =================================
+   ปุ่มไม่หนี
+================================= */
 
-const noButton = document.getElementById("noButton");
+const noButton =
+    document.getElementById("noButton");
+
 
 function moveNoButton() {
 
-    const maxX = window.innerWidth - 120;
-    const maxY = window.innerHeight - 80;
+    const x =
+        Math.random() *
+        (window.innerWidth - 120);
 
-    const randomX = Math.random() * maxX;
-    const randomY = Math.random() * maxY;
+    const y =
+        Math.random() *
+        (window.innerHeight - 80);
 
     noButton.style.position = "fixed";
 
-    noButton.style.left = randomX + "px";
+    noButton.style.left = x + "px";
 
-    noButton.style.top = randomY + "px";
+    noButton.style.top = y + "px";
 }
 
-noButton.addEventListener("mouseenter", moveNoButton);
-noButton.addEventListener("touchstart", moveNoButton);
+
+noButton.addEventListener(
+    "mouseenter",
+    moveNoButton
+);
 
 
-/* =========================
+noButton.addEventListener(
+    "touchstart",
+    moveNoButton
+);
+
+
+/* =================================
    SCENE 4 → SCENE 5
-   กด "เริ่มเลย"
-========================= */
 
-const startButton = document.getElementById("startButton");
+   กดเริ่มเลย
+================================= */
 
-const envelope = document.getElementById("envelope");
+const startButton =
+    document.getElementById("startButton");
 
-const playGame = document.getElementById("playGame");
+const envelope =
+    document.getElementById("envelope");
+
+const playGame =
+    document.getElementById("playGame");
+
 
 startButton.addEventListener("click", function () {
 
-    document.body.classList.remove("ready-scene");
+    /* เปลี่ยนฉาก */
 
-    document.body.classList.add("message-scene");
+    document.body.classList.remove(
+        "ready-scene"
+    );
+
+    document.body.classList.add(
+        "message-scene"
+    );
+
+
+    /* ซ่อนปุ่มเกมก่อน */
+
+    playGame.classList.add("hidden");
+
 
     /*
-       สำคัญมาก!
-       ต้องสั่งเปิดซองหลังจาก
-       เข้าฉาก message แล้ว
+       รอให้ Scene 5 แสดงก่อน
+       แล้วค่อยเปิดซอง
     */
 
-    setTimeout(() => {
+    setTimeout(function () {
 
         envelope.classList.add("open");
 
-    }, 500);
+    }, 700);
 
 
     /*
-       หลังจากกระดาษเด้งออกมา
-       ค่อยให้ปุ่มเล่นเกมโผล่
+       หลังเปิดซองแล้ว
+       ให้ปุ่มเกมโผล่
     */
 
-    setTimeout(() => {
+    setTimeout(function () {
 
         playGame.classList.remove("hidden");
 
@@ -106,32 +139,41 @@ startButton.addEventListener("click", function () {
 });
 
 
-/* =========================
+/* =================================
    SCENE 5 → SCENE 6
-========================= */
+================================= */
 
 playGame.addEventListener("click", function () {
 
-    document.body.classList.remove("message-scene");
+    document.body.classList.remove(
+        "message-scene"
+    );
 
-    document.body.classList.add("game-scene");
+    document.body.classList.add(
+        "game-scene"
+    );
 
     startGame();
 
 });
 
 
-/* =========================
+/* =================================
    GAME
-========================= */
+================================= */
 
-const scoreElement = document.getElementById("score");
+const scoreElement =
+    document.getElementById("score");
 
-const timerElement = document.getElementById("timer");
+const timerElement =
+    document.getElementById("timer");
 
-const gameArea = document.getElementById("gameArea");
+const gameArea =
+    document.getElementById("gameArea");
 
-const gameMessage = document.getElementById("gameMessage");
+const gameMessage =
+    document.getElementById("gameMessage");
+
 
 let score = 0;
 
@@ -148,9 +190,9 @@ function startGame() {
 
     timeLeft = 20;
 
-    scoreElement.textContent = score;
+    scoreElement.textContent = "0";
 
-    timerElement.textContent = timeLeft;
+    timerElement.textContent = "20";
 
     gameMessage.textContent = "";
 
@@ -160,18 +202,18 @@ function startGame() {
     createHeart();
 
 
-    heartTimer = setInterval(() => {
+    heartTimer = setInterval(
+        createHeart,
+        900
+    );
 
-        createHeart();
 
-    }, 900);
-
-
-    gameTimer = setInterval(() => {
+    gameTimer = setInterval(function () {
 
         timeLeft--;
 
-        timerElement.textContent = timeLeft;
+        timerElement.textContent =
+            timeLeft;
 
 
         if (timeLeft <= 0) {
@@ -187,49 +229,68 @@ function startGame() {
 
 function createHeart() {
 
-    if (!document.body.classList.contains("game-scene")) {
+    if (
+        !document.body.classList.contains(
+            "game-scene"
+        )
+    ) {
         return;
     }
 
 
-    const heart = document.createElement("button");
-
-    heart.className = "game-heart";
-
-    heart.textContent = "❤️";
+    const heart =
+        document.createElement("button");
 
 
-    const maxX = gameArea.clientWidth - 60;
-
-    const maxY = gameArea.clientHeight - 60;
-
-
-    const x = Math.random() * Math.max(maxX, 10);
-
-    const y = Math.random() * Math.max(maxY, 10);
+    heart.className =
+        "game-heart";
 
 
-    heart.style.left = x + "px";
-
-    heart.style.top = y + "px";
-
-
-    heart.addEventListener("click", function () {
-
-        score++;
-
-        scoreElement.textContent = score;
-
-        heart.remove();
+    heart.textContent =
+        "❤️";
 
 
-        if (score >= 10) {
+    const maxX =
+        gameArea.clientWidth - 60;
 
-            winGame();
+
+    const maxY =
+        gameArea.clientHeight - 60;
+
+
+    heart.style.left =
+        Math.random() *
+        Math.max(maxX, 10)
+        + "px";
+
+
+    heart.style.top =
+        Math.random() *
+        Math.max(maxY, 10)
+        + "px";
+
+
+    heart.addEventListener(
+        "click",
+        function () {
+
+            score++;
+
+            scoreElement.textContent =
+                score;
+
+
+            heart.remove();
+
+
+            if (score >= 10) {
+
+                winGame();
+
+            }
 
         }
-
-    });
+    );
 
 
     gameArea.appendChild(heart);
@@ -249,7 +310,7 @@ function endGame() {
         "ไม่เป็นไร เอาใหม่ได้ 💗";
 
 
-    setTimeout(() => {
+    setTimeout(function () {
 
         startGame();
 
@@ -270,53 +331,70 @@ function winGame() {
         "เย่! เก็บครบแล้ววว 🥺💗";
 
 
-    setTimeout(() => {
+    setTimeout(function () {
 
-        document.body.classList.remove("game-scene");
+        document.body.classList.remove(
+            "game-scene"
+        );
 
-        document.body.classList.add("gift-scene");
+        document.body.classList.add(
+            "gift-scene"
+        );
 
     }, 1800);
 
 }
 
 
-/* =========================
-   SCENE 7 → SCENE 8
-========================= */
+/* =================================
+   GIFT → ROSES
+================================= */
 
-const openGift = document.getElementById("openGift");
+const openGift =
+    document.getElementById("openGift");
 
-const giftBox = document.getElementById("giftBox");
+const giftBox =
+    document.getElementById("giftBox");
 
 
 openGift.addEventListener("click", function () {
 
-    giftBox.classList.add("gift-open");
+    giftBox.classList.add(
+        "gift-open"
+    );
 
 
-    setTimeout(() => {
+    setTimeout(function () {
 
-        document.body.classList.remove("gift-scene");
+        document.body.classList.remove(
+            "gift-scene"
+        );
 
-        document.body.classList.add("rose-scene");
+        document.body.classList.add(
+            "rose-scene"
+        );
 
     }, 1000);
 
 });
 
 
-/* =========================
-   SCENE 8 → SCENE 9
-========================= */
+/* =================================
+   ROSES → FINAL
+================================= */
 
-const lastButton = document.getElementById("lastButton");
+const lastButton =
+    document.getElementById("lastButton");
 
 
 lastButton.addEventListener("click", function () {
 
-    document.body.classList.remove("rose-scene");
+    document.body.classList.remove(
+        "rose-scene"
+    );
 
-    document.body.classList.add("final-scene");
+    document.body.classList.add(
+        "final-scene"
+    );
 
 });
